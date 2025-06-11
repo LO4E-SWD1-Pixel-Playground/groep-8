@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="game website">
     <meta name="keywords" content="HTML, meta tags, voorbeeld, webontwikkeling">
-    <meta name="author" content="yusuf">
+    <meta name="author" content="Yusuf">
     <link rel="stylesheet" href="style.css">
     <script src="js/conformatie.js" defer></script>
     

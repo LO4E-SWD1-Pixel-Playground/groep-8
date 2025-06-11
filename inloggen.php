@@ -85,7 +85,7 @@ $conn->close();
 </main>
 
 <footer>
-    <img src="img/gamelogo.png" alt="Gaming Hotel Logo" class="logo">
+    <img src="img/gamelogo.png" alt="Gaming Hotel" class="logo">
     <article class="socials">
         <article>Follow us:</article>
         <a class="fa fa-facebook"></a>
