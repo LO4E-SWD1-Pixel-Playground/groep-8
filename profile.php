@@ -149,7 +149,7 @@ $conn->close();
         </article>
     </article>
 
-    <article class="badger">
+    <section class="badger">
         <h2>Your Badges</h2>
         <article class="badged">
             <article class="badge">
@@ -164,7 +164,7 @@ $conn->close();
                 </article>
             </article>
         </article>
-    </article>
+    </section>
 
     <article class="highscores1">
         <h2>Your Highscores</h2>
