@@ -27,11 +27,33 @@
 
   <article class="highscores">
     <article class="scores">
-      <p><strong>Top 1</strong><br>User: Anonymous<br>Highscore: 1250</p>
-      <p><strong>Top 2</strong><br>User: Anonymous<br>Highscore: 900</p>
-      <p><strong>Top 3</strong><br>User: Anonymous<br>Highscore: 850</p>
-      <p><strong>Top 4</strong><br>User: Anonymous<br>Highscore: 704</p>
-      <p><strong>Top 5</strong><br>User: Anonymous<br>Highscore: 600</p>
+<?php
+$conn = new mysqli("localhost", "root", "", "pixelplayground");
+
+$sql = "
+    SELECT g.gebruikersnaam, h.highscore
+    FROM highscores h
+    JOIN gebruikers g ON h.gebruiker_id = g.id
+    ORDER BY h.highscore DESC
+    LIMIT 5
+";
+
+$result = $conn->query($sql);
+$top = 1;
+
+while ($row = $result->fetch_assoc()) {
+    ?>
+    <p><strong>Top <?= $top ?></strong><br>
+    User: <?= htmlspecialchars($row['gebruikersnaam']) ?><br>
+    Highscore: <?= (int)$row['highscore'] ?></p>
+    <?php
+    $top++;
+}
+
+$conn->close();
+?>
+
+
     </article>
   </article>
 </main>

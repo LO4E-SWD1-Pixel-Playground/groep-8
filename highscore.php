@@ -24,15 +24,12 @@
     <article class="frees">
         <h1> Latest Highscores</h1>
         <p class="geenidee">click to see the latest highscores</p>
-    </article>
-    <article class="pool">
-        <a href="latesthighscore1.php">
-            <img class="heya" src="img/unnamed.png" alt="slide 1">
-        </a>
+       </article>
+       <article class="imager">
         <a href="latesthighscore1.php">
             <img class="heya" src="img/download.png" alt="slide 2">
         </a>
-    </article>
+        </article>
 </main>
 
 <footer>
