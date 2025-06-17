@@ -8,6 +8,7 @@
     <meta name="keywords" content="HTML, meta tags, voorbeeld, webontwikkeling">
     <meta name="author" content="yusuf">
     <link rel="stylesheet" href="style.css">
+    <script src="js/tictactoe.js" defer></script>
     
 
     <title>game website</title>
@@ -23,8 +24,7 @@
 <main>
     <article class="frees"> <h1> Alle Games</h1> </article>
    <article class="pool">
-    <img class="heya" src="img/unnamed.png" alt="slide 1">
-    <img class="heya" src="img/download.png" alt="slide 2">
+     <img class="heya" src="img/download.png" alt="Tic Tac Toe">
    </article>
 </main>
 
@@ -39,8 +39,10 @@
 
 </body>
 </html>
+
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
+
