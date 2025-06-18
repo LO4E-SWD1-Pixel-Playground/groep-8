@@ -5,3 +5,4 @@ session_destroy();
 header("Location: inloggen.php");
 exit;
 ?>
+<?php echo "wasgood gang"; ?>

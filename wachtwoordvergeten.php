@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="game website">
     <meta name="keywords" content="HTML, meta tags, voorbeeld, webontwikkeling">
-    <meta name="author" content="yusuf">
+    <meta name="author" content="Yusuf">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
