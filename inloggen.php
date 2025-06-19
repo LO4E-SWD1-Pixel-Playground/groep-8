@@ -14,54 +14,41 @@
 </head>
 <body>
 <?php
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$host = "localhost";
-$db_user = "root";      
-$db_pass = "";          
-$db_name = "pixelplayground";
-
-$conn = new mysqli($host, $db_user, $db_pass, $db_name);
+session_start();
+$conn = new mysqli("localhost", "root", "", "pixelplayground");
 if ($conn->connect_error) {
     die("Connectie mislukt: " . $conn->connect_error);
 }
 
 $error = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $gebruikersnaam = $_POST['username'] ?? '';
-    $wachtwoord = $_POST['password'] ?? '';
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    if ($gebruikersnaam && $wachtwoord) {
-        $stmt = $conn->prepare("SELECT wachtwoord FROM gebruikers WHERE gebruikersnaam = ?");
-        $stmt->bind_param("s", $gebruikersnaam);
-        $stmt->execute();
-        $stmt->store_result();
+    if ($username != "" && $password != "") {
+        $sql = "SELECT * FROM gebruikers WHERE gebruikersnaam = '$username'";
+        $result = $conn->query($sql);
 
-        if ($stmt->num_rows === 1) {
-            $stmt->bind_result($hashed_wachtwoord);
-            $stmt->fetch();
+        if ($result && $result->num_rows == 1) {
+            $user = $result->fetch_assoc();
 
-            if (password_verify($wachtwoord, $hashed_wachtwoord)) {
-                $_SESSION['gebruikersnaam'] = $gebruikersnaam;
+            if (password_verify($password, $user['wachtwoord'])) {
+                $_SESSION['account'] = $user['id'];
+                $_SESSION['gebruikersnaam'] = $user['gebruikersnaam'];
                 header("Location: index.php");
                 exit;
             } else {
-                $error = "Wachtwoord is onjuist.";
+                $error = "Gebruikersnaam of wachtwoord is onjuist.";
             }
-        } else {
-            $error = "Gebruiker niet gevonden.";
         }
-        $stmt->close();
     } else {
-        $error = "Vul zowel gebruikersnaam als wachtwoord in.";
+        $error = "Vul alle velden in.";
     }
 }
-
 $conn->close();
 ?>
+
 <?php include 'header.php'; ?>
 
 <main>

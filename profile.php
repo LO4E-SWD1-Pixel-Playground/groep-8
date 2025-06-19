@@ -40,12 +40,10 @@ $gebruikersnaam = $_SESSION['gebruikersnaam'];
 $error = "";
 $success = "";
 
-$stmt = $conn->prepare("SELECT gebruikersnaam, wachtwoord FROM gebruikers WHERE gebruikersnaam = ?");
-$stmt->bind_param("s", $gebruikersnaam);
-$stmt->execute();
-$stmt->bind_result($db_gebruikersnaam, $db_wachtwoord);
-$stmt->fetch();
-$stmt->close();
+$getUserData = "SELECT gebruikersnaam, wachtwoord FROM gebruikers WHERE gebruikersnaam = '$gebruikersnaam';";
+$userDataResult = $conn->query($getUserData)->fetch_array(MYSQLI_BOTH);
+$db_gebruikersnaam = $userDataResult['gebruikersnaam'];
+$db_wachtwoord = $userDataResult['wachtwoord'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['change_username'])) {
@@ -53,19 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($nieuwe_naam === '') {
             $error = "Nieuwe gebruikersnaam mag niet leeg zijn.";
         } else {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM gebruikers WHERE gebruikersnaam = ?");
-            $stmt->bind_param("s", $nieuwe_naam);
-            $stmt->execute();
-            $stmt->bind_result($count);
-            $stmt->fetch();
-            $stmt->close();
-
-            if ($count > 0) {
+            $checkUsername = "SELECT COUNT(*) as count FROM gebruikers WHERE gebruikersnaam = '$nieuwe_naam';";
+            $checkResult = $conn->query($checkUsername)->fetch_array(MYSQLI_BOTH);
+            
+            if ($checkResult['count'] > 0) {
                 $error = "Deze gebruikersnaam is al in gebruik.";
             } else {
-                $stmt = $conn->prepare("UPDATE gebruikers SET gebruikersnaam = ? WHERE gebruikersnaam = ?");
-                $stmt->bind_param("ss", $nieuwe_naam, $gebruikersnaam);
-                if ($stmt->execute()) {
+                $updateUsername = "UPDATE gebruikers SET gebruikersnaam = '$nieuwe_naam' WHERE gebruikersnaam = '$gebruikersnaam';";
+                if ($conn->query($updateUsername)) {
                     $_SESSION['gebruikersnaam'] = $nieuwe_naam;
                     $success = "Gebruikersnaam succesvol gewijzigd!";
                     $db_gebruikersnaam = $nieuwe_naam;
@@ -73,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $error = "Er is iets misgegaan bij het wijzigen van de gebruikersnaam.";
                 }
-                $stmt->close();
             }
         }
     }
@@ -88,16 +80,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Wachtwoorden komen niet overeen.";
         } else {
             $hashed = password_hash($nieuw_wachtwoord, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE gebruikers SET wachtwoord = ? WHERE gebruikersnaam = ?");
-            $stmt->bind_param("ss", $hashed, $gebruikersnaam);
-            if ($stmt->execute()) {
+            $updatePassword = "UPDATE gebruikers SET wachtwoord = '$hashed' WHERE gebruikersnaam = '$gebruikersnaam';";
+            if ($conn->query($updatePassword)) {
                 $success = "Wachtwoord succesvol gewijzigd!";
             } else {
                 $error = "Er is iets misgegaan bij het wijzigen van het wachtwoord.";
             }
-            $stmt->close();
         }
     }
+}
+
+$getUserID = "SELECT id FROM gebruikers WHERE gebruikersnaam = '$gebruikersnaam';";
+$userIDResult = $conn->query($getUserID)->fetch_array(MYSQLI_BOTH);
+$userID = $userIDResult['id'];
+
+$hoogsteScore = "SELECT MAX(highscore) AS `hoogsteScore` FROM `highscores` WHERE `gebruiker_id` = $userID AND `game_id` = 4;";
+$hoogsteScoreResult = $conn->query($hoogsteScore)->fetch_array(MYSQLI_BOTH);
+
+if ($hoogsteScoreResult['hoogsteScore'] == ""){
+    $hoogsteScoreResult['hoogsteScore'] = '0';
 }
 
 $conn->close();
@@ -166,15 +167,17 @@ $conn->close();
         </article>
     </section>
 
-    <article class="highscores1">
-        <h2>Your Highscores</h2>
-        <article class="highscores2">
-            <article class="highscore3">
-                <img src="img/download.png" alt="Soccer Random Game" class="game-preview" />
-                <p>Your Highscores: 400 goals</p>
-            </article>
+    
+    
+<article class="highscores1">
+    <h2>Your Highscores</h2>
+    <article class="highscores2">
+        <article class="highscore3">
+            <img src="img/download.png" alt="Soccer Random Game" class="game-preview" />
+            <p>Your Highscore: <?php echo $hoogsteScoreResult['hoogsteScore']; ?> wins</p>
         </article>
     </article>
+</article>
 </main>
 
 <footer>

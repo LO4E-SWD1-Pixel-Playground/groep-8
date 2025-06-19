@@ -17,6 +17,26 @@
 
     </head>
 <body>
+<?php
+$conn = new mysqli("localhost", "root", "", "pixelplayground");
+if (!$conn->connect_error) {
+    $sql = "SELECT h.highscore, g.gebruikersnaam 
+            FROM highscores h 
+            JOIN gebruikers g ON h.gebruiker_id = g.id 
+            ORDER BY h.timestamp DESC 
+            LIMIT 3";
+    
+    $result = $conn->query($sql);
+    $highscores = [];
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $highscores[] = $row;
+        }
+    }
+    $conn->close();
+}
+?>
 <?php include 'header.php'; ?>
 
 <main>
@@ -29,17 +49,22 @@
     <article class="looters">
         <h2>Latest Highscores</h2>
 
-        <article class="kanders">
-            <p><strong>galgje</strong><br>
-            User: Anonymous<br>
-            Highscore: 1250</p>
-        </article>
+        <?php if (!empty($highscores)): ?>
+            <?php foreach($highscores as $score): ?>
+                <article class="kanders">
+                    <p><strong>tic tac toe</strong><br>
+                    User: <?php echo htmlspecialchars($score['gebruikersnaam']); ?><br>
+                    Highscore: <?php echo $score['highscore']; ?> wins</p>
+                </article>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <article class="kanders">
+                <p><strong>tic tac toe</strong><br>
+                User: Anonymous<br>
+                Highscore: 0</p>
+            </article>
+        <?php endif; ?>
 
-        <article class="kanders">
-            <p><strong>tic tac toe</strong><br>
-            User: Anonymous<br>
-            Highscore: 3 wins</p>
-        </article>
     </article>
 </main>
 

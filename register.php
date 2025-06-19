@@ -10,13 +10,11 @@
     <link rel="stylesheet" href="style.css">
     <script src="js/conformatie.js" defer></script>
     
-
     <title>game website</title>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    </head>
+</head>
 <body>
 
 <?php include 'header.php'; ?>
@@ -38,7 +36,6 @@
 </article>
 </main>
 
-
 <footer>
     <img src="img/gamelogo.png" alt="Gaming Hotel Logo" class="logo">
     <article class="socials">
@@ -50,6 +47,7 @@
 
 </body>
 </html>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $host = "localhost";
@@ -64,20 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO gebruikers (gebruikersnaam, wachtwoord) VALUES (?, ?)");
-    $stmt->bind_param("ss", $gebruikersnaam, $hashed_wachtwoord);
-    $stmt->execute();
-
-    $stmt->close();
+    $sql = "INSERT INTO gebruikers (gebruikersnaam, wachtwoord) VALUES ('$gebruikersnaam', '$hashed_wachtwoord')";
+    
+    $conn->query($sql);
     $conn->close();
 
     header("Location: inloggen.php");
     exit;
 }
-?>
-<?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-
