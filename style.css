@@ -1,0 +1,536 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+header {
+    background-color: #0D0D1C;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    height: 60px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: none;
+    opacity: 0.85; 
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.slideshowgames {
+    flex: 2;
+    min-width: 300px;
+    text-align: center;
+}
+
+.slideshowgames h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.slideshowgames p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.slideshowgames img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.slideshowgames {
+    text-align: center; 
+}
+
+.frees {
+    width: 100%;
+    text-align: center;
+}
+
+.pool {
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+    padding: 30px 0;
+    margin: 50px auto;
+}
+
+.heya {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    margin: 0 70px; 
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.heya:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
+.geenidee {
+  margin-top: 30px;
+}
+
+.slide {
+    width: 400px; 
+    height: 300px; 
+    object-fit: cover; 
+    margin: 20px auto; 
+    display: block;
+    justify-content: space-between; 
+}
+
+.highscores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.scores {
+  background-color: #D9D9D9;
+  padding: 40px;
+  border-radius: 50px;
+  width: 400px; 
+  font-family: Arial, sans-serif;
+  font-size: 20px; 
+  line-height: 2; 
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.form {
+  width: 100%;
+}
+
+
+.form label {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 14px;
+}
+
+.form input[type="text"],
+.form input[type="password"] {
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  font-size: 14px;
+  background: white;
+}
+
+.forgot {
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.profiles {
+    background-color: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    min-height: 100vh;
+}
+
+.account {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.account h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.label {
+    font-size: 14px;
+    color: #333;
+}
+
+.changer {
+    background-color: white;
+    border: 1px solid #999;
+    padding: 4px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.logout {
+    background-color: white;
+    border: 1px solid #999;
+    padding: 6px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.friends1 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.friends1 h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.friend {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.badger {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.badger h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.checkmark {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    flex-shrink: 0;
+}
+
+.badgerinfo h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.badgerinfo > p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.detailer p {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.highscores1 {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.highscores1 h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.highscore3 {
+    text-align: left;
+}
+
+.game-preview {
+    width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.highscore3 p {
+    font-size: 14px;
+    color: #333;
+}
+
+.mybutton {
+  padding: 5px 15px;
+  background: white;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login {
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+.form {
+  width: 100%;
+}
+
+
+.form label {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 14px;
+}
+
+
+.form input[type="text"],
+.form input[type="password"] {
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  font-size: 14px;
+}
+
+
+.zikker {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+
+.zikker .label {
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+}
+
+
+.nonder {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nonder:hover {
+  background-color: #0056b3;
+}
+
+
+.zolder {
+  margin-top: 0.5rem;
+}
+
+
+.zolder input[type="text"],
+.zolder input[type="password"] {
+  padding: 0.4rem;
+  margin-right: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+.zolder button {
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: none;
+  margin-right: 0.4rem;
+  transition: background-color 0.3s ease;
+}
+
+.zolder button[name="change_username"],
+.zolder button[name="change_password"] {
+  background-color: #28a745;
+  color: white;
+}
+
+.zolder button[name="change_username"]:hover,
+.zolder button[name="change_password"]:hover {
+  background-color: #1e7e34;
+}
+
+.bonder {
+  background-color: #dc3545;
+  color: white;
+}
+
+.bonder:hover {
+  background-color: #b02a37;
+}
+
+
+.error-message {
+  color: #dc3545;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  color: #28a745;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+
+.logout {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #6c757d;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+  background-color: #5a6268;
+}
+
+
+.forgot {
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.mybutton {
+  padding: 5px 15px;
+  background: #f0f0f0;
+  color: #000;
+  border: 1px solid #000;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.looters {
+    flex: 1;
+    min-width: 250px;
+    padding-left: 30px;
+}
+
+.looters h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.kanders {
+    margin-bottom: 20px;
+}
+
+.kanders p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+footer {
+    background-color: #0D0D1C;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .logo {
+    height: 50px;
+}
+
+footer .socials span {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+footer .socials a {
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+footer .socials a:hover {
+    color: #999;
+}
