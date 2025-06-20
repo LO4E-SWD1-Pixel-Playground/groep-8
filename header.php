@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <img src="img/gamelogo.png" alt="Gaming Hotel" class="logo">
 
     <nav>
-        <a href="homepagina.php">Home</a>
+        <a href="index.php">Home</a>
         <a href="#">Add friends</a>
         <a href="games.php">Games</a>
         <a href="highscore.php">Highscores</a>

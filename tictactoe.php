@@ -39,7 +39,7 @@ if ($conn->connect_error) {
 
 $gebruikersnaam = $_SESSION['gebruikersnaam'];
 
-// Haal gebruiker_id op
+
 $stmt = $conn->prepare("SELECT id FROM gebruikers WHERE gebruikersnaam = ?");
 $stmt->bind_param("s", $gebruikersnaam);
 $stmt->execute();
@@ -51,10 +51,9 @@ $conn->close();
 include 'header.php'; 
 ?>
 
-<!-- JavaScript variabelen doorgeven -->
 <script>
     const GEBRUIKER_ID = <?php echo $gebruiker_id; ?>;
-    const GAME_ID = 4; // TicTacToe game ID
+    const GAME_ID = 4; 
 </script>
 <script src="js/tictactoe1.js" defer></script>
 

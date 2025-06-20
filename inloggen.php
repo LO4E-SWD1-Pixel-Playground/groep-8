@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (password_verify($wachtwoord, $hashed_wachtwoord)) {
                 $_SESSION['gebruikersnaam'] = $gebruikersnaam;
-                header("Location: homepagina.php");
+                header("Location: index.php");
                 exit;
             } else {
                 $error = "Wachtwoord is onjuist.";
